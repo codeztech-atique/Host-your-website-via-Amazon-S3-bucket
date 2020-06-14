@@ -1,0 +1,53 @@
+----------- DEPLOY TO S3 VIA COMMAND PROMPT ------------
+
+aws s3 sync ./ s3://yourbucketname
+
+----------- FOR PUBLIC DOMAIN NAME ----------- 
+
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1588960628951",
+    "Statement": [
+        {
+            "Sid": "Stmt1588960626081",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::codeztech/*"
+        }
+    ]
+}
+
+----------- CORS Policy -----------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+<CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+    <AllowedMethod>DELETE</AllowedMethod>
+    <MaxAgeSeconds>5</MaxAgeSeconds>
+    <ExposeHeader>ETag</ExposeHeader>
+    <AllowedHeader>*</AllowedHeader>
+</CORSRule>
+</CORSConfiguration>
+
+----------- WITH DOMAIN NAME BUCKET POLICY -----------
+
+WITH DOMAIN NAME BUCKET POLICY (atiqueahmed.online — BlockPublic access)
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::atiqueahmed.online/*"
+        }
+    ]
+}
